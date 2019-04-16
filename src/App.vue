@@ -1,28 +1,45 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
-  </div>
+  <v-app id="inspire">
+    <v-navigation-drawer
+      v-model="drawer"
+      fixed
+      app
+    >
+      <v-list dense>
+        <FileOpen />
+        <FileClose />
+      </v-list>
+ 
+    </v-navigation-drawer>
+    <v-toolbar color="indigo" dark fixed app>
+      <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>
+      <v-toolbar-title>Application</v-toolbar-title>
+    </v-toolbar>
+ 
+    <v-content>
+      <Editor />
+    </v-content>
+ 
+    <v-footer color="indigo" app>
+      <span class="white--text">&copy; 2017</span>
+    </v-footer>
+  </v-app>
 </template>
-
+ 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
+import FileOpen from './components/FileOpen.vue'
+import FileClose from './components/FileClose.vue'
+import Editor from './components/Editor.vue'
+ 
 export default {
-  name: 'app',
   components: {
-    HelloWorld
-  }
+    FileOpen,
+    FileClose,
+    Editor
+  },
+ 
+  data: () => ({
+    drawer: null
+  }),
 }
 </script>
-
-<style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>
