@@ -1,7 +1,7 @@
 <template>
   <v-list-tile @click="onClose">
     <v-list-tile-content>
-      <v-btn color="primary">File Close</v-btn>
+      <v-btn block color="primary">File Close</v-btn>
     </v-list-tile-content>
   </v-list-tile>
 </template>
@@ -11,8 +11,8 @@ export default {
   name: 'FileClose',
   methods: {
     onClose: function () {
-      const writeFile = this.$store.state.file.name
-      const fileInput = this.$store.state.input
+      const writeFile = this.$store.getters.file.name
+      const fileInput = this.$store.getters.input
  
       let blob = new Blob([fileInput], { "type" : "text/plain" });
       let link = document.createElement('a')
@@ -20,8 +20,8 @@ export default {
       link.download = writeFile
       link.click()
  
-      this.$store.state.input = '# None'
-      this.$store.state.file = {}
+      this.$store.dispatch('setValues', '# None')
+      this.$store.dispatch('setFile', {})
       document.getElementById("select").value = ""
     }
   }

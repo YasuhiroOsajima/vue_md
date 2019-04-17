@@ -1,14 +1,14 @@
 <template>
-    <v-layout row wrap id="editor">
-        <v-flex d-flex md6>
-            <textarea v-model="$store.state.input" @input="update"></textarea>
-        </v-flex>
-        <v-flex d-flex md6>
-          <v-card>
-            <div id="preview" v-html="compiledMarkdown" class="markdown-body"></div>
-          </v-card>
-        </v-flex>
-    </v-layout>
+  <v-layout row wrap id="editor">
+    <v-flex d-flex md6>
+      <textarea v-model="$store.state.input" @input="update"></textarea>
+    </v-flex>
+    <v-flex d-flex md6>
+      <v-card>
+        <div id="preview" v-html="compiledMarkdown" class="markdown-body"></div>
+      </v-card>
+    </v-flex>
+  </v-layout>
 </template>
  
 <script>
@@ -22,9 +22,10 @@ export default {
       return marked(this.$store.state.input, { sanitize: true })
     }
   },
+
   methods: {
     update: _.debounce(function (event) {
-      this.$store.state.input = event.target.value
+      this.$store.dispatch('setValues', event.target.value)
     }, 300),
   },
 }

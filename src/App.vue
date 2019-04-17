@@ -2,6 +2,8 @@
   <v-app id="inspire">
     <v-navigation-drawer
       v-model="drawer"
+      width="180"
+      dark
       fixed
       app
     >

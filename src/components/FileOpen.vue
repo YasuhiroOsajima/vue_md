@@ -1,7 +1,7 @@
 <template>
   <v-list-tile>
     <v-list-tile-content>
-      <v-btn color="primary" @click="$refs.inputUpload.click()">File Open</v-btn>
+      <v-btn block color="primary" @click="$refs.inputUpload.click()">File Open</v-btn>
       <input id="select" v-show="false" type="file" ref="inputUpload" @change="onFileChange" accept="text/*,.json,.md">
     </v-list-tile-content>
   </v-list-tile>
@@ -17,12 +17,12 @@ export default {
  
       const state = this
       const reader = new FileReader()
-      reader.onload = function(e){
-        state.$store.state.input = e.target.result
+      reader.onload = function(event){
+        state.$store.dispatch('setValues', event.target.result)
       }
       reader.readAsText(file)
  
-      this.$store.state.file = file
+      this.$store.dispatch('setFile', file)
     },
   }
 }
