@@ -1,5 +1,7 @@
 # vue_md
 
+<img src="top_image.jpg" width="600">  
+
 ## Project setup
 ```
 npm install
