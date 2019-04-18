@@ -15,7 +15,7 @@
     </v-navigation-drawer>
     <v-toolbar color="indigo" dark fixed app>
       <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>
-      <v-toolbar-title>Application</v-toolbar-title>
+      <v-toolbar-title>Editor</v-toolbar-title>
     </v-toolbar>
  
     <v-content>
@@ -23,7 +23,7 @@
     </v-content>
  
     <v-footer color="indigo" app>
-      <span class="white--text">&copy; 2017</span>
+      <span class="white--text">&copy; yosajima practice</span>
     </v-footer>
   </v-app>
 </template>
@@ -43,5 +43,12 @@ export default {
   data: () => ({
     drawer: null
   }),
+
+  created: () => {
+    window.addEventListener("beforeunload", function(event){
+      event.preventDefault()
+      event.returnValue = 'You have unfinished changes!'
+    }, false)
+  }
 }
 </script>
